@@ -17,7 +17,7 @@ public class SceneSelect : MonoBehaviour
 	private static int currentSceneIndex;
 	private List<Toggle> toggles = new List<Toggle>();
 
-
+	private static bool firstTime = true;
 	void Start()
 	{
 		sceneNamesScript = gameObject.GetComponent<ReadSceneNames>();
@@ -28,6 +28,11 @@ public class SceneSelect : MonoBehaviour
 			createOneToggle(new Vector2(0.0f, -i * toggleHeight), sceneNames[i]);
 			if (selectedScenes.Count != 0 && !selectedScenes.Contains(sceneNames[i]))
 				toggles[toggles.Count - 1].isOn = false;
+		}
+		if(firstTime)
+		{
+			StartButtonPressed();
+			firstTime = false;
 		}
 	}
 
